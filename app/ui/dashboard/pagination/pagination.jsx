@@ -1,7 +1,6 @@
 "use client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import styles from "./pagination.module.css";
-import { useDebouncedCallback } from "use-debounce";
 
 const Pagination = ({ count }) => {
   const searchParams = useSearchParams();
