@@ -54,9 +54,39 @@ export const addProduct = async (formdata) => {
     await newProduct.save();
   } catch (error) {
     console.log(error);
-    throw new Error("Failed to create user!");
+    throw new Error("Failed to create product!");
   }
 
   revalidatePath("/dashboard/products");
   redirect("/dashboard/products");
+};
+
+export const deleteProduct = async (formdata) => {
+  const { id } = Object.fromEntries(formdata);
+
+  try {
+    connectToDb();
+
+    await Product.findByIdAndDelete(id);
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to delete product");
+  }
+
+  revalidatePath("/dashboard/products");
+};
+
+export const deleteUser = async (formdata) => {
+  const { id } = Object.fromEntries(formdata);
+
+  try {
+    connectToDb();
+
+    await User.findByIdAndDelete(id);
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to delete user");
+  }
+
+  revalidatePath("/dashboard/users");
 };
